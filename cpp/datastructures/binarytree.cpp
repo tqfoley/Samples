@@ -118,7 +118,7 @@ int main() {
 	displayRecursive(head);
 
 	int level = 0;
-	cout << "\nfind:" << find(6, head, &level);
+	cout << "\nfind:" << find(8, head, &level);
 	cout << "\nlevel:" << level;
 
 
@@ -138,7 +138,7 @@ int main() {
 
 	cout << "\ndistance 16 100 :" << distance_between_two_leafs(16, 100, head) << "\n";
 
-	cout << "\ndistance 12 100 :" << distance_between_two_leafs(12, 100, head) << "\n";
+	cout << "\ndistance 8 100 :" << distance_between_two_leafs(8, 100, head) << "\n";
 
 	cout << "\ndistance 12 100 :" << distance_between_two_leafs(12, 100, head) << "\n";
 
@@ -147,6 +147,10 @@ int main() {
 	cout << "\ndistance 16 0 :" << distance_between_two_leafs(16, 0, head) << "\n";
 
 	cout << "\ndistance 27 7 :" << distance_between_two_leafs(7, 27, head) << "\n";
+
+	cout << "\ndistance 127 7 :" << distance_between_two_leafs(7, 127, head) << "\n";
+
+	cout << "\ndistance 27 117 :" << distance_between_two_leafs(117, 27, head) << "\n";
 
 
 
