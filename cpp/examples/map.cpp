@@ -6,65 +6,92 @@
 #include <map> 
 
 #include <algorithm>
-
+#include <unordered_map>
+#include <sstream>      
 
 using namespace std;
 
-void printList(map<int, string> g) {
+string numToString(int num) {
+	
+	string ret = "";
 
-	// printing map gquiz1 
-	map<int, string>::iterator itr;
-	cout << "\tKEY\tELEMENT\n";
-	for (itr = g.begin(); itr != g.end(); ++itr) {
-		cout << '\t' << itr->first
-			<< '\t' << itr->second << '\n';
+	while (num > 1) {
+		if (num % 2 == 0) {
+			ret += '0';
+		}
+		else {
+			ret += '1';
+		}
+		num /= 2;
 	}
-	cout << endl;
+	if (num % 2 == 0) {
+		ret += '0';
+	}
+	else {
+		ret += '1';
+	}
+	while (ret.length() < 30) {
+		ret += '0';
+	}
+	return ret;
 }
 
-int main()
+unordered_map<string, int> makeMap()
 {
-	// empty map container 
-	map<int, string> gquiz1;
+	
+	unordered_map<string, int> dictionary_unordered = unordered_map<string, int>();
 
-	// insert elements in random order 
-	gquiz1.insert(pair<int, string>(1, "trevor"));
-	gquiz1.insert(pair<int, string>(2, "tf"));
-	gquiz1.insert(pair<int, string>(3, "tf"));
-	gquiz1.insert(pair<int, string>(4, "tf2"));
-	gquiz1.insert(pair<int, string>(5, "tf"));
-	gquiz1.insert(pair<int, string>(6, "tf"));
-	gquiz1.insert(pair<int, string>(7, "tf"));
+	for (int i = 0; i < 64; i++) {
+		int numb = i * 7;
+		string g = numToString(numb % 64);
+		dictionary_unordered[g] = numb %64;
+	}
 
-	printList(gquiz1);
+	return dictionary_unordered;
+}
 
-	// assigning the elements from gquiz1 to gquiz2 
-	map<int, string> gquiz2(gquiz1.begin(), gquiz1.end());
+bool exists(unordered_map<string, int> map, string sdf) {
+	if (map.find(sdf) == map.end())
+	{
+		return false;
+	}
+	return true;
+}
 
-	// print all elements of the map gquiz2 
-	cout << "\nThe map gquiz2 after"
-		<< " assign from gquiz1 is : \n";
+int main() {
 
-	printList(gquiz2);
-	cout << endl;
-
-	// remove all elements up to 
-	// element with key=3 in gquiz2 
-	cout << "\ngquiz2 after removal of"
-		" elements less than key=3 : \n";
-
-	gquiz2.erase(gquiz2.begin(), gquiz2.find(3));
-	printList(gquiz2);
-	cout << endl;
+	unordered_map<string, int> dictionary_unordered = makeMap();
+	string sdf = "sdf";
+	dictionary_unordered[sdf] = 5;
+	dictionary_unordered["Sdfg"] = 6;
 
 
+	for (pair<string, int> element : dictionary_unordered)
+	{
+		cout << element.first << " :: " << element.second << std::endl;
+	}
+	cout << "trevor" << "\n\n";
+	
 
-	// remove all elements with key = 4 
-	int num;
-	num = gquiz2.erase(4);
 
-	printList(gquiz2);
-	cout << endl;
+	map<string, int> dictionary_ordered;
+	dictionary_ordered["zdsfg"] = 6;
+	dictionary_ordered["rt"] = 8;
+	dictionary_ordered["zdsfg"] = 9;
+	dictionary_ordered["atyu"] = 7;
+
+
+	for (pair<string, int> element : dictionary_ordered)
+	{
+		cout << element.first << " :: " << element.second << std::endl;
+	}
+	cout << "trevor" << "\n\n";
+
+
+
+
+
+	
 
 	return 0;
 }
